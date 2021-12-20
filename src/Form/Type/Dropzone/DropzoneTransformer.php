@@ -14,7 +14,7 @@ class DropzoneTransformer implements DataTransformerInterface
 
     public function transform($value)
     {
-        // TODO: Implement transform() method.
+
     }
 
     public function reverseTransform(mixed $value) : array
