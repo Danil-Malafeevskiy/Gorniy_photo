@@ -1,0 +1,132 @@
+
+
+.gallery__items, .album__items{
+    display: grid;
+    column-gap: 20px;
+    row-gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(auto, 400px));
+}
+
+.sort__search{
+    text-align: center;
+    padding-bottom: 15px;
+}
+
+.sort__search button{
+    background-color: #fff;
+    margin-right: 15px;
+    border: 1px solid #666;
+    padding: 5px 10px;
+    transition: 0.5s;
+    color: #113060;
+}
+
+.sort__search button:hover{
+    background-color: #dcc865;
+    border-color: #dcc865;
+}
+
+.search{
+    display: inline-block;
+    border: 1px solid #666;
+    padding: 5px 10px;
+    margin-bottom: 15px;
+}
+
+.search:focus{
+	border: 1px solid #dcc865;
+	box-shadow: 0px 0px 20px -1px #dcc865;
+}
+
+.gallery__items p{
+    color: #113060;
+    padding: 0 5px;
+}
+
+.gallery__items li{
+    border: 5px solid transparent;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.25)
+}
+
+.gallery__items li:hover{
+    border-color:#dcc865;
+}
+
+.gallary_item--img{
+    margin-bottom: 20px;
+}
+
+.name__album{
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.gallary_item--img, .album__item{
+    position: relative;
+    padding-bottom: 90%;
+}
+
+.gallary_item--img img, .album__item img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media (min-width: 769px){
+    .main{
+        grid-template: 1fr / 1fr minmax(auto, 620px) 1fr;
+    }
+
+    .gallery__items, .album__items{
+        display: grid;
+        column-gap: 20px;
+        row-gap: 30px;
+        grid-template-columns: repeat(auto-fit, minmax(auto, 300px));
+    }
+
+    .sort__button:first-child{
+        margin-bottom: 15px;
+    }
+}
+
+@media (min-width: 1024px){
+    .main{
+        grid-template: 1fr / 1fr minmax(auto, 805px) 1fr;
+    }
+
+    .gallery__items, .album__items{
+        display: grid;
+        column-gap: 20px;
+        row-gap: 30px;
+        grid-template-columns: repeat(auto-fit, minmax(auto, 250px));
+    }
+}
+
+@media (min-width: 1216px){
+    .main{
+        grid-template: 1fr / 1fr minmax(auto, 990px) 1fr;
+    }
+
+    .gallery__items, .album__items{
+        display: grid;
+        column-gap: 20px;
+        row-gap: 30px;
+        grid-template-columns: repeat(auto-fit, minmax(auto, 230px));
+    }
+}
+
+@media (min-width: 1408px) {
+    .main{
+        grid-template: 1fr / 1fr minmax(auto, 1235px) 1fr;
+    }
+
+    .gallery__items, .album__items{
+        display: grid;
+        column-gap: 20px;
+        row-gap: 30px;
+        grid-template-columns: repeat(auto-fit, minmax(auto, 228px));
+    }
+}

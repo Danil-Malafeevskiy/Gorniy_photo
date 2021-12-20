@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block style %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+{% endblock %}
+{% block main %}
+        <section class="sidebar">
+            <ul class="sidebar__menu">
+                <li>
+                    <a href="" class="sidebar__link">Главная страница клиентской части</a>
+                </li>
+                <li>
+                    <a href="" class="sidebar__link">Главная страница администратианой чати</a>
+                </li>
+                <li>
+                    <a href="" class="sidebar__link">Выход</a>
+                </li>
+            </ul>
+        </section>
+        <section class="content">
+            <h1 class="content__title">Создание альбома</h1>
+            <div class="form">
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                {{ form_end(form) }}
+            </div>
+        </section>
+{% endblock %}
+
+{% block script %}
+    <script>
+        document.querySelector('.main').classList.add('add__img')
+    </script>
+{% endblock %}

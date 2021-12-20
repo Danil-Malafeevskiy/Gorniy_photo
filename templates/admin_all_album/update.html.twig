@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block style %}
+    <link rel="stylesheet" href="{{ asset('css/glav.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/aglav.css') }}">
+{% endblock %}
+
+{% block main %}
+    <section class="sidebar" style="grid-column: 2 / 3;">
+        <ul class="sidebar__menu">
+            <li>
+                <a href="#" class="sidebar__link">Главная страница клиентской части</a>
+            </li>
+            <li>
+                <a href="{{ path('admin_all_album') }}" class="sidebar__link">Главная страница административной чати</a>
+            </li>
+            <li>
+                <a href="#" class="sidebar__link">Выход</a>
+            </li>
+        </ul>
+    </section>
+    <section class="content">
+        <h1 class="content__title">{{ album.title }}</h1>
+        <div class="form">
+        {{ form_start(form) }}
+            {{ form_row(form.title) }}
+            {{ form_row(form.date_publication) }}
+            {{ form_row(form.description) }}
+            {{ form_row(form.active) }}
+            {{form_row(form.images)}}
+            {{ form_widget(form.submit, {'label' : 'Сохранить'})}}
+        {{ form_end(form) }}
+
+        </div>
+            <ul class="album__items" style="padding: 15px">
+                {% set Images = album.images %}
+                {% if(Images) %}
+                    {% for img  in Images%}
+                        <li class="album__item"style="padding: 0">
+                            <form action="{{ path('img.delete', {'id': img.id}) }}">
+                                <div class="gallary_item--img" >
+                                    <img src="{{ asset('uploads/img/') }}{{ img.getIdImage.getImageName() }}" alt="">
+                                </div>
+                                <div class="">
+                                    <input type="submit" class="button" value="Удалить">
+                                </div>
+                            </form>
+                        </li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+    </section>
+{% endblock %}
+
+

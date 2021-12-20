@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block style %}
+    <link rel="stylesheet" href="{{ asset('css/glav.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/aglav.css') }}">
+{% endblock %}
+
+{% block main %}
+    <section class="sidebar" style="grid-column: 2 / 3;">
+    <ul class="sidebar__menu">
+        <li>
+            <a href="#" class="sidebar__link">Главная страница клиентской части</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_all_album') }}" class="sidebar__link">Главная страница административной чати</a>
+        </li>
+        <li>
+            <a href="#" class="sidebar__link">Выход</a>
+        </li>
+    </ul>
+    </section>
+    <section class="content">
+        <section id="for_search" class="content__gallery gallery">
+            <h1 class="content__title">Альбомы мероприятий</h1>
+            <div class="sort__search">
+                <input class="search" placeholder="Поиск" />
+                <div class="sort__button">
+                    <button class="sort" data-sort="date">Сортировать по дате проведения</button>
+                    <button class="sort" data-sort="name__album">Сортировать по названию альбома</button>
+                </div>
+            </div>
+            <div class="not-found" style="display:none">По вашему запросу ничего не найдено</div>
+            <div class="center">
+                <ul class="paginationTop" ></ul>
+            </div>
+            <ul class="gallery__items list">
+                {% for album in albums %}
+                        <li>
+                            {% set pat = '/album/' %}
+                            <a href="{{ path('admin_album', {'id': album.id} ) }}">
+                                <div class="gallery__item">
+                                    <div class="gallary_item--img">
+                                        {% set image = album.images.first %}
+                                        {% if image != false %}
+                                            <img src="{{ asset('uploads/img/') }}{{ image.getIdImage.getImageName() }}" alt="">
+                                        {% endif %}
+                                    </div>
+                                    <div class="gallery__item--text">
+                                        <p class="name__album">{{album.title}}</p>
+                                        <p class="date">Дата провдения: <span class="date timestamp" data-timestamp="1427713871">{{ album.getDatePublication()|date('d.m.Y') }}</span></p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                {% endfor %}
+            </ul>
+            <div class="center">
+                <ul class="paginationBottom" ></ul>
+            </div>
+            <form action="{{ path('add_album') }}" style="padding-top: 15px">
+                <input type="submit" class="button" value="Добавить альбом">
+            </form>
+        </section>
+    </section>
+{% endblock %}
+
+
+{% block script %}<script src="{{ asset('js/List.js') }}"></script>{% endblock %}
+

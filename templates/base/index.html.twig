@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    {% block style %}{% endblock %}
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фотографии мероприятий</title>
+    <style>
+        ul.paginationTop, ul.paginationBottom {
+            display: inline-block;
+            padding: 0;
+            margin: 0;
+        }
+
+        ul.paginationTop li, ul.paginationBottom li {display: inline;}
+
+        ul.paginationTop li a, ul.paginationBottom li a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+        }
+        ul.paginationTop li.active a, ul.paginationBottom li.active a {
+            background-color: #113060;
+            color: white;
+        }
+
+        ul.paginationTop li a:hover:not(.active), ul.paginationBottom li a:hover:not(.active) {background-color: #ddd;}
+
+        div.center {
+            text-align: center;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <header class="header">
+        <div class="header__logo">
+            <a href="https://lk.spmi.ru/stream/">
+                <img src="{{ asset('img/icon/logo.svg') }}" alt="">
+            </a>
+        </div>
+        <div class="back__burger">
+            <div class="header__burger" onclick="changeBurger()">
+                <span></span>
+            </div>
+        </div>
+        <nav class="header__menu">
+            <ul class="header__list">
+                <li id="change_element1">
+                    <a href="{{ path('all_album') }}" class="header__link" onmouseover="addBorderElement('change_element1')" onmouseout="removeBorderElement('change_element1')">Главная</a>
+                </li>
+                <li id="change_element2">
+                    <a href="https://spmi.ru/" class="header__link" onmouseover="addBorderElement('change_element2')" onmouseout="removeBorderElement('change_element2')">Сайт Горного Университета</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="main">
+        {% block main %} {% endblock %}
+    </div>
+    <footer class="footer_">
+        <ul class="footer__links">
+            <li>
+                <a href="" class="footer__link">Главная</a>
+            </li>
+            <li>
+                <a href="" class="footer__link">Сайт Горного Университета</a>
+            </li>
+            <li>
+                <a href="" class="footer__link">{{email}}</a>
+            </li>
+        </ul>
+        <div class="footer__share">
+            <p>Поделиться</p>
+            <script src="https://yastatic.net/share2/share.js"></script>
+            <div class="ya-share2" data-curtain data-services="vkontakte,facebook,odnoklassniki,twitter,whatsapp"></div>
+        </div>
+    </footer>
+</div>
+
+{% block script %}{% endblock %}
+<script src="{{ asset('js/app.js') }}"></script>
+</body>
+</html>

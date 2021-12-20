@@ -1,0 +1,19 @@
+{% block dropzone_widget -%}
+    {{- block('form_widget') -}}
+
+    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+
+    <script src="{{ asset('js/dropzone.js') }}"></script>
+    <script>
+
+        function getHtml(id)
+        {
+            const el = document.createElement('input');
+            el.type = "hidden";
+            el.name = "{{ formName }}[{{ name|default(null) }}][dropzone][]";
+            el.value = id;
+            return el;
+        }
+
+    </script>
+{% endblock %}

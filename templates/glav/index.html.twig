@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Альбомы мероприятий{% endblock %}
+
+{% block h1 %} Альбомы мероприятий {% endblock %}
+
+{% block body %}
+    <section id="for_search" class="content__gallery gallery">
+        <h2 class="gallery__title"></h2>
+        <div class="sort__search">
+            <input class="search" placeholder="Поиск" />
+            <div class="sort__button">
+                <!-- <button class="sort" data-sort="date">Сортировать по дате проведения</button> -->
+                <button class="sort" data-sort="name__album">Сортировать по названию альбома</button>
+            </div>
+        </div>
+        <div class="not-found" style="display:none">По вашему запросу ничего не найдено</div>
+        <ul class="gallery__items list">
+            <li>
+                <a href="/glav/gallery">
+                    <div class="gallery__item">
+                            {% for image in images%}
+                                {% if (image != '.' and image != '..') %}
+                            <div class="gallary_item--img"><img src="{{asset('uploads/' )}}{{ image }}"></div>
+                                {%  endif%}
+                            {% endfor %}
+
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </section>
+{% endblock %}
+
+{% block script %}
+    <script src="{{ asset('js/List.js') }}"></script>
+{% endblock %}

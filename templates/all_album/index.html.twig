@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/glav.css') }}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фотографии мероприятий</title>
+    <style>
+        ul.paginationTop, ul.paginationBottom {
+            display: inline-block;
+            padding: 0;
+            margin: 0;
+        }
+
+        ul.paginationTop li, ul.paginationBottom li {display: inline;}
+
+        ul.paginationTop li a, ul.paginationBottom li a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+        }
+        ul.paginationTop li.active a, ul.paginationBottom li.active a {
+            background-color: #113060;
+            color: white;
+        }
+
+        ul.paginationTop li a:hover:not(.active), ul.paginationBottom li a:hover:not(.active) {background-color: #ddd;}
+
+        div.center {
+            text-align: center;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <header class="header">
+        <div class="header__logo">
+            <a href="https://lk.spmi.ru/stream/">
+                <img src="{{ asset('img/icon/logo.svg') }}" alt="">
+            </a>
+        </div>
+        <div class="back__burger">
+            <div class="header__burger" onclick="changeBurger()">
+                <span></span>
+            </div>
+        </div>
+        <nav class="header__menu">
+            <ul class="header__list">
+                <li id="change_element1">
+                    <a href="{{ path('all_album') }}" class="header__link" onmouseover="addBorderElement('change_element1')" onmouseout="removeBorderElement('change_element1')">Главная</a>
+                </li>
+                <li id="change_element2">
+                    <a href="https://spmi.ru/" class="header__link" onmouseover="addBorderElement('change_element2')" onmouseout="removeBorderElement('change_element2')">Сайт Горного Университета</a>
+                </li>
+                <li id="change_element3">
+                    <a class="header__link"  href="/" onmouseover="addBorderElement('change_element3')" onmouseout="removeBorderElement('change_element3')">Войти</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="main">
+        <section class="content">
+            <section  class="content__gallery gallery">
+                <h1 class="content__title">Альбомы мероприятий</h1>
+                <div class="sort__search">
+                    <input class="search" placeholder="Поиск" />
+                    <div class="sort__button">
+                        <button class="sort" data-sort="date">Сортировать по дате проведения</button>
+                        <button class="sort" data-sort="name__album">Сортировать по названию альбома</button>
+                    </div>
+                </div>
+                <div class="not-found" style="display:none">По вашему запросу ничего не найдено</div>
+                <div id="for_search">
+                    <div class="center">
+                        <ul class="paginationTop" ></ul>
+                    </div>
+                    <ul class="gallery__items list">
+                        {% for album in albums %}
+                            {% if (album.active) %}
+                                <li>
+                                    {% set pat = '/album/' %}
+                                    <a href="{{ path('_album', {'id': album.id} ) }}">
+                                        <div class="gallery__item">
+                                            <div class="gallary_item--img">
+                                                {% set image = album.images.first %}
+                                                {% if image != false %}
+                                                    <img src="{{ asset('uploads/img/') }}{{ image.getIdImage.getImageName() }}" alt="">
+                                                {% endif %}
+                                            </div>
+                                            <div class="gallery__item--text">
+                                                <p class="name__album">{{album.title}}</p>
+                                                <p>Дата провдения: <span class="date timestamp" data-timestamp="1427713871">{{ album.getDatePublication()|date('d.m.Y') }}</span></p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                    <div class="center">
+                        <ul class="paginationBottom" ></ul>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </div>
+    <footer class="footer_">
+        <ul class="footer__links">
+            <li>
+                <a href="{{ path('all_album')}}" class="footer__link">Главная</a>
+            </li>
+            <li>
+                <a href="https://spmi.ru/" class="footer__link">Сайт Горного Университета</a>
+            </li>
+        </ul>
+        <div class="footer__share">
+            <p>Поделиться</p>
+            <script src="https://yastatic.net/share2/share.js"></script>
+            <div class="ya-share2" data-curtain data-services="vkontakte,facebook,odnoklassniki,twitter,whatsapp"></div>
+        </div>
+    </footer>
+</div>
+
+<script src="{{ asset('js/List.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
+</body>
+</html>
+
+
+
+
+
+
+

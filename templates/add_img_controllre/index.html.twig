@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создание альбома</title>
+</head>
+<body>
+<div class="wrapper">
+    <header class="header">
+        <div class="header__logo">
+            <a href="https://lk.spmi.ru/stream/">
+                <img src="{{  asset('img/icon/logo.svg') }}" alt="">
+            </a>
+        </div>
+        <div class="back__burger">
+            <div class="header__burger" onclick="changeBurger()">
+                <span></span>
+            </div>
+        </div>
+        <nav class="header__menu">
+            <ul class="header__list">
+                <li id="change_element1">
+                    <a href="index.html" class="header__link" onmouseover="addBorderElement('change_element1')" onmouseout="removeBorderElement('change_element1')">Главная</a>
+                </li>
+                <li id="change_element2">
+                    <a href="https://spmi.ru/" class="header__link" onmouseover="addBorderElement('change_element2')" onmouseout="removeBorderElement('change_element2')">Сайт Горного Университета</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="main add__img">
+        <section class="sidebar">
+            <ul class="sidebar__menu">
+                <li>
+                    <a href="" class="sidebar__link">Главная страница клиентской части</a>
+                </li>
+                <li>
+                    <a href="" class="sidebar__link">Главная страница административной чати</a>
+                </li>
+                <li>
+                    <a href="" class="sidebar__link">Выход</a>
+                </li>
+            </ul>
+        </section>
+        <section class="content">
+            <h1 class="content__title">Создание альбома</h1>
+            <div class="form">
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                {{ form_end(form) }}
+            </div>
+        </section>
+    </div>
+    <footer class="footer_">
+        <ul class="footer__links">
+            <li>
+                <a href="" class="footer__link">Главная</a>
+            </li>
+            <li>
+                <a href="" class="footer__link">Сайт Горного Университета</a>
+            </li>
+        </ul>
+        <div class="footer__share">
+            <p>Поделиться</p>
+            <script src="https://yastatic.net/share2/share.js"></script>
+            <div class="ya-share2" data-curtain data-services="vkontakte,facebook,odnoklassniki,twitter,whatsapp"></div>
+        </div>
+    </footer>
+</div>
+<script src="{{ asset('js/app.js') }}"></script>
+</body>
+</html>
