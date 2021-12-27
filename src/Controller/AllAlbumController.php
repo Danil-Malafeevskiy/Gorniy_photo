@@ -71,18 +71,25 @@ class AllAlbumController extends AbstractController
                 $em->persist($Relation);
                 $album->addImage($Relation);
             }
-            $em->persist($album);
-            $album->setDateUpdate(new DateTimeImmutable(true));
-            $album->setDateCreate(new DateTimeImmutable(true));
-            $album->setUserUpdate($user->getUserIdentifier());
-            $album->setUserCreate($album->getUserCreate());
 
-
-            $em->flush();
             if($update) {
+                $em->persist($album);
+                $album->setDateUpdate(new DateTimeImmutable(true));
+                $album->setDateCreate(new DateTimeImmutable(true));
+                $album->setUserUpdate($user->getUserIdentifier());
+                $album->setUserCreate($album->getUserCreate());
+
+                $em->flush();
                 return $this->redirectToRoute('admin_all_album');
             }
             else{
+                $em->persist($album);
+                $album->setDateUpdate(new DateTimeImmutable(true));
+                $album->setDateCreate(new DateTimeImmutable(true));
+                $album->setUserUpdate($user->getUserIdentifier());
+                $album->setUserCreate($user->getUserIdentifier());
+
+                $em->flush();
                 return $this->redirectToRoute('admin_all_album');
             }
         }
