@@ -75,7 +75,7 @@ class AllAlbumController extends AbstractController
             if($update) {
                 $em->persist($album);
                 $album->setDateUpdate(new DateTimeImmutable(true));
-                $album->setDateCreate(new DateTimeImmutable(true));
+                $album->setDateCreate($album->getDateCreate());
                 $album->setUserUpdate($user->getUserIdentifier());
                 $album->setUserCreate($album->getUserCreate());
 
